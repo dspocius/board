@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { EntriesService } from './entries.service';
 import { Entries } from './entries.entity';
 import { CreateEntryDto } from './createEntryDto';
@@ -10,6 +10,20 @@ export class EntriesController {
   @Get()
   async findAll(): Promise<Entries[]> {
     return this.entriesService.findAll();
+  }
+
+  @Get(':id')
+  async findByBoardId(@Param('id') id: number): Promise<Entries[]> {
+    return this.entriesService.findByBoardId(id);
+  }
+
+  @Delete('/:id')
+  async delete(@Param('id') id: number): Promise<Object> {
+    return this.entriesService.delete(id);
+  }
+  @Delete('/board/:id')
+  async deleteBoard(@Param('boardid') boardid: number): Promise<Object> {
+    return this.entriesService.deleteBoardEntries(boardid);
   }
 
   @Post()

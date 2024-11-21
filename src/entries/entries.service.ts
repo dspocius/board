@@ -13,7 +13,16 @@ export class EntriesService {
   async findAll(): Promise<Entries[]> {
     return this.entriesRepository.find();
   }
-
+  async findByBoardId(board_id:number): Promise<Entries[]> {
+    return this.entriesRepository.findBy({board_id: board_id });
+  }
+  async delete(id:number): Promise<Object> {
+    return this.entriesRepository.delete({id: id });
+  }
+  async deleteBoardEntries(id:number): Promise<Object> {
+    return this.entriesRepository.delete({board_id: id });
+  }
+  
   async create(name: string,email: string,is_project: number, description: string, board_id:number): Promise<Entries> {
     const entries = new Entries();
     entries.name = name;

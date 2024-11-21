@@ -13,7 +13,9 @@ export class BoardService {
   async findAll(): Promise<Board[]> {
     return this.boardRepository.find();
   }
-
+  async delete(id:number): Promise<Object> {
+    return this.boardRepository.delete({id: id });
+  }
   async create(name: string): Promise<Board> {
     const board = new Board();
     board.name = name;

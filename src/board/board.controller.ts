@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body,Delete,Param } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { BoardService } from './board.service';
 import { Board } from './board.entity';
@@ -12,6 +12,11 @@ export class BoardController {
   @Get()
   async findAll(): Promise<Board[]> {
     return this.boardService.findAll();
+  }
+
+  @Delete('/:id')
+  async delete(@Param('id') id: number): Promise<Object> {
+    return this.boardService.delete(id);
   }
 
   @Post()
