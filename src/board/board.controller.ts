@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body,Delete,Param } from '@nestjs/common';
+import { Controller, Get, Post, Body,Delete,Param, Put } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { BoardService } from './board.service';
 import { Board } from './board.entity';
@@ -17,6 +17,12 @@ export class BoardController {
   @Delete('/:id')
   async delete(@Param('id') id: number): Promise<Object> {
     return this.boardService.delete(id);
+  }
+
+  @Put('/:id')
+  @ApiOperation({ summary: 'Edit board' })
+  async edit(@Param('id') id: number, @Body() createBoardDto: CreateBoardDto): Promise<Object> {
+    return this.boardService.update(id, createBoardDto.name);
   }
 
   @Post()

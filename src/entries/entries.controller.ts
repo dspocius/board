@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { EntriesService } from './entries.service';
 import { Entries } from './entries.entity';
 import { CreateEntryDto } from './createEntryDto';
@@ -25,7 +25,10 @@ export class EntriesController {
   async deleteBoard(@Param('boardid') boardid: number): Promise<Object> {
     return this.entriesService.deleteBoardEntries(boardid);
   }
-
+  @Put('/:id')
+  async edit(@Param('id') id: number, @Body() createEntriesDto: CreateEntryDto): Promise<Object> {
+    return this.entriesService.update(id, createEntriesDto.name, createEntriesDto.description);
+  }
   @Post()
   async create(@Body() createEntriesDto: CreateEntryDto): Promise<Entries> {
     return this.entriesService.create(createEntriesDto.name, createEntriesDto.email, createEntriesDto.is_project,

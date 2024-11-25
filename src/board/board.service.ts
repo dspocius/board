@@ -16,6 +16,9 @@ export class BoardService {
   async delete(id:number): Promise<Object> {
     return this.boardRepository.delete({id: id });
   }
+  async update(id:number, name: string): Promise<Object> {
+    return this.boardRepository.update(id, {name: name});
+  }
   async create(name: string): Promise<Board> {
     const board = new Board();
     board.name = name;
