@@ -32,6 +32,6 @@ export class EntriesController {
   @Post()
   async create(@Body() createEntriesDto: CreateEntryDto): Promise<Entries> {
     return this.entriesService.create(createEntriesDto.name, createEntriesDto.email, createEntriesDto.is_project,
-	createEntriesDto.description, createEntriesDto.board_id);
+	createEntriesDto.description, createEntriesDto.board_id, createEntriesDto.position);
   }
 }
