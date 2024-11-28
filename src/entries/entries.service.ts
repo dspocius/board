@@ -25,10 +25,11 @@ export class EntriesService {
   async update(id:number, name: string, description: string, board_id: number, position: number): Promise<Object> {
     return this.entriesRepository.update(id, {name: name, description: description, board_id: board_id, position: position});
   }
-  async create(name: string,email: string,is_project: number, description: string, board_id:number): Promise<Entries> {
+  async create(name: string,email: string,is_project: number, description: string, board_id:number, position:number): Promise<Entries> {
     const entries = new Entries();
     entries.name = name;
     entries.email = email;
+    entries.position = position;
     entries.is_project = is_project;
     entries.description = description;
     entries.board_id = board_id;
