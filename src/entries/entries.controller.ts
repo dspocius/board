@@ -27,7 +27,7 @@ export class EntriesController {
   }
   @Put('/:id')
   async edit(@Param('id') id: number, @Body() createEntriesDto: CreateEntryDto): Promise<Object> {
-    return this.entriesService.update(id, createEntriesDto.name, createEntriesDto.description);
+    return this.entriesService.update(id, createEntriesDto.name, createEntriesDto.description, createEntriesDto.board_id);
   }
   @Post()
   async create(@Body() createEntriesDto: CreateEntryDto): Promise<Entries> {

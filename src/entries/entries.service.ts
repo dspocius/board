@@ -22,8 +22,8 @@ export class EntriesService {
   async deleteBoardEntries(id:number): Promise<Object> {
     return this.entriesRepository.delete({board_id: id });
   }
-  async update(id:number, name: string, description: string): Promise<Object> {
-    return this.entriesRepository.update(id, {name: name, description: description});
+  async update(id:number, name: string, description: string, board_id: number): Promise<Object> {
+    return this.entriesRepository.update(id, {name: name, description: description, board_id: board_id});
   }
   async create(name: string,email: string,is_project: number, description: string, board_id:number): Promise<Entries> {
     const entries = new Entries();
