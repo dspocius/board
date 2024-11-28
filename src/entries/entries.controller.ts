@@ -14,7 +14,7 @@ export class EntriesController {
 
   @Get(':id')
   async findByBoardId(@Param('id') id: number): Promise<Entries[]> {
-    return this.entriesService.findByBoardId(id);
+    return (await this.entriesService.findByBoardId(id)).sort((a:any,b:any) => a.position < b.position ? -1 : a.position > b.position ? 1 : 0);
   }
 
   @Delete('/:id')
@@ -27,7 +27,7 @@ export class EntriesController {
   }
   @Put('/:id')
   async edit(@Param('id') id: number, @Body() createEntriesDto: CreateEntryDto): Promise<Object> {
-    return this.entriesService.update(id, createEntriesDto.name, createEntriesDto.description, createEntriesDto.board_id);
+    return this.entriesService.update(id, createEntriesDto.name, createEntriesDto.description, createEntriesDto.board_id, createEntriesDto.position);
   }
   @Post()
   async create(@Body() createEntriesDto: CreateEntryDto): Promise<Entries> {

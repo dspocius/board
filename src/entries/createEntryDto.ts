@@ -12,4 +12,6 @@ email: string;
   description: string; 
   @ApiProperty() 
   board_id: number
+  @ApiProperty() 
+  position: number
 }

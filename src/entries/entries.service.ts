@@ -14,7 +14,7 @@ export class EntriesService {
     return this.entriesRepository.find();
   }
   async findByBoardId(board_id:number): Promise<Entries[]> {
-    return this.entriesRepository.findBy({board_id: board_id });
+    return (await this.entriesRepository.findBy({board_id: board_id }));
   }
   async delete(id:number): Promise<Object> {
     return this.entriesRepository.delete({id: id });
@@ -22,8 +22,8 @@ export class EntriesService {
   async deleteBoardEntries(id:number): Promise<Object> {
     return this.entriesRepository.delete({board_id: id });
   }
-  async update(id:number, name: string, description: string, board_id: number): Promise<Object> {
-    return this.entriesRepository.update(id, {name: name, description: description, board_id: board_id});
+  async update(id:number, name: string, description: string, board_id: number, position: number): Promise<Object> {
+    return this.entriesRepository.update(id, {name: name, description: description, board_id: board_id, position: position});
   }
   async create(name: string,email: string,is_project: number, description: string, board_id:number): Promise<Entries> {
     const entries = new Entries();

@@ -14,4 +14,6 @@ export class Entries {
   is_project: number;
   @Column()
   board_id: number;
+  @Column()
+  position: number;
 }
