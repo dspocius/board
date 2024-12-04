@@ -1,14 +1,22 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { LocalStrategy } from './auth/local.strategy';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Board } from './board/board.entity';
 import { BoardModule } from './board/board.module';
 import { Entries } from './entries/entries.entity';
 import { EntriesModule } from './entries/entries.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { PassportModule } from '@nestjs/passport';
+import { AuthService } from './auth/auth.service';
+import { UsersService } from './users/users.service';
+import { JwtService } from '@nestjs/jwt';
+
 @Module({
-    imports: [
+    imports: [PassportModule, AuthModule, UsersModule,
     TypeOrmModule.forRoot({
       type: 'mariadb',  // You can change this to 'postgres', 'sqlite', etc.
       host: '127.0.0.1',  // Your database host
@@ -23,6 +31,6 @@ import { EntriesModule } from './entries/entries.module';
 	EntriesModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [JwtService,UsersService,AuthService,LocalStrategy, AppService],
 })
 export class AppModule {}
