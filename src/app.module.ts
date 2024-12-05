@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Board } from './board/board.entity';
 import { BoardModule } from './board/board.module';
 import { Entries } from './entries/entries.entity';
+import { User } from './users/user.entity';
 import { EntriesModule } from './entries/entries.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
@@ -24,7 +25,7 @@ import { JwtService } from '@nestjs/jwt';
       username: 'root',  // Your database username
       password: 'root',  // Your database password
       database: 'board',  // Your database name
-      entities: [Board,Entries],  // List of your entity classes (e.g., User)
+      entities: [Board,Entries,User],  // List of your entity classes (e.g., User)
       synchronize: true,  // Should be true in development only
     }),
     BoardModule,
